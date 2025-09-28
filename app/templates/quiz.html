@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ quiz_data.title }} - SocraMind</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="main-page">
+    <div class="main-container">
+        <h1>{{ quiz_data.title }}</h1>
+        
+        <form id="quiz-form">
+            {% for question in quiz_data.questions %}
+                {# Simpan indeks dari loop pertanyaan (loop luar) ke dalam variabel #}
+                {% set question_index = loop.index0 %}
+                
+                <div class="quiz-question">
+                    <p><b>{{ loop.index }}. {{ question.text }}</b></p>
+                    
+                    {% for option in question.options %}
+                        <div class="quiz-option">
+                            <label>
+                                {# Gunakan variabel 'question_index' yang sudah kita simpan #}
+                                <input type="radio" name="question-{{ question_index }}" value="{{ option }}">
+                                {{ option }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="quiz-submit-btn">Selesai & Lihat Skor</button>
+        </form>
+        
+
+        <div id="quiz-result" style="display:none;">
+            <h3>Hasil Anda:</h3>
+            <p id="score-text"></p>
+            <a href="{{ url_for('main.materi') }}">Kembali ke Menu Materi</a>
+        </div>
+    </div>
+
+<script>
+    // Ambil data yang dikirim dari Python
+    const questions = {{ quiz_data.questions | tojson }};
+    const correctAnswers = {{ correct_answers | tojson }};
+    const moduleName = "{{ module_name }}";
+
+    const quizForm = document.getElementById('quiz-form');
+    const quizResultDiv = document.getElementById('quiz-result');
+    const scoreText = document.getElementById('score-text');
+
+    quizForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        let score = 0;
+        const totalQuestions = questions.length;
+        const userAnswers = []; // Array untuk menyimpan semua detail jawaban
+
+        for (let i = 0; i < totalQuestions; i++) {
+            const selectedOptionInput = document.querySelector(`input[name="question-${i}"]:checked`);
+            const selectedAnswer = selectedOptionInput ? selectedOptionInput.value : "Tidak dijawab";
+            const correctAnswer = correctAnswers[i];
+            const isCorrect = selectedAnswer === correctAnswer;
+
+            if (isCorrect) {
+                score++;
+            }
+
+            // Kumpulkan semua detail untuk dikirim ke backend
+            userAnswers.push({
+                question_text: questions[i].text,
+                selected_answer: selectedAnswer,
+                correct_answer: correctAnswer,
+                is_correct: isCorrect
+            });
+        }
+
+        const finalScore = (score / totalQuestions) * 100;
+
+        // Tampilkan hasil skor di UI
+        scoreText.innerText = `Skor Anda: ${finalScore.toFixed(0)} (${score} dari ${totalQuestions} benar)`;
+        quizForm.style.display = 'none';
+        quizResultDiv.style.display = 'block';
+
+        // Kirim semua detail jawaban ke server
+        try {
+            await fetch("{{ url_for('learning.save_quiz_attempt') }}", { // Panggil route baru
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    score: finalScore.toFixed(0),
+                    module_name: moduleName,
+                    answers: userAnswers // Kirim array detail jawaban
+                })
+            });
+        } catch (error) {
+            console.error("Gagal menyimpan hasil kuis:", error);
+        }
+    });
+</script>
+</body>
+</html>

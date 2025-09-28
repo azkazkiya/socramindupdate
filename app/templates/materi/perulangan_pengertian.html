@@ -1,0 +1,51 @@
+<div class="materi-content">
+    <h4>Konsep Struktur Kontrol Perulangan</h4>
+    <p>
+        Algoritma perulangan merupakan struktur dasar berupa serangkaian instruksi yang dijalankan berulang kali untuk menyelesaikan suatu tugas dalam pemrograman. Tujuannya adalah agar kode tidak perlu ditulis berkali-kali untuk hasil yang sama. 
+    </p>
+    <p>
+Algoritma perulangan merupakan struktur algoritma dasar berupa logic atau serangkaian instruksi yang dijalankan berulang kali untuk menyelesaikan suatu tugas atau masalah dalam pemrograman, dengan tujuan agar kode tida perlu ditulis berkali-kali untuk hasil yang sama. Kita bisa mengibaratkan algoritma perulangan dengan proses menyetrika pakaian. Ketika menyetrika, kita mengulang-ulang Langkah mengambil satu persatu pakaian, menyetrika, dan meletakkannya hingga semua pakaian selesai. Contoh lainnya seperti menghitung jumlah repetisi pull-up ketika berolahraga, menjemur pakaian secara berurutan, atau mencetak dokumen. Jika kasus-kasus perulangan ini diaplikasi ke dalam komputer, perlu dilakukan otomatisasi tugas repetitif dan menghemat waktu serta tenaga programmer dengan memungkinkan instruksi yang sama dijalankan berulang kali tanpa harus menulis ulang kode.    </p>
+
+    <h5>1. Perulangan For</h5>
+    <p>
+        Perulangan <strong>for</strong> adalah struktur yang ideal ketika kita sudah mengetahui secara pasti berapa kali sebuah blok kode perlu diulang. Di Python, ini sering digunakan untuk mengiterasi item dalam sebuah sekuens (seperti list atau range angka).
+    </p>
+
+    <h6>a) For increment</h6>
+    <p>
+        Pada <em>for increment</em>, nilai variabel kontrolnya akan bertambah pada setiap iterasi. Perulangan ini biasanya digunakan untuk melakukan iterasi maju, misalnya dari angka kecil ke angka yang lebih besar.
+    </p>
+    <pre><code class="language-python">
+# Mencetak angka dari 1 sampai 5 (maju/increment)
+# range(1, 6) akan menghasilkan urutan angka dari 1, 2, 3, 4, 5
+for i in range(1, 6):
+    print(f"Perulangan ke-{i}")
+    </code></pre>
+
+    <h6>b) For decrement</h6>
+    <p>
+        Pada <em>for decrement</em>, nilai variabel kontrolnya akan berkurang pada setiap akhir iterasi. Ini sangat berguna untuk melakukan hitung mundur atau iterasi dari nilai besar ke nilai yang lebih kecil.
+    </p>
+    <pre><code class="language-python">
+# Mencetak hitung mundur dari 5 ke 1 (mundur/decrement)
+# range(5, 0, -1) menghasilkan urutan angka 5, 4, 3, 2, 1
+for i in range(5, 0, -1):
+    print(f"Hitung mundur: {i}")
+    </code></pre>
+
+    <h5>2. Perulangan While</h5>
+    <p>
+        Perulangan <strong>while</strong> digunakan untuk mengulang blok kode <em>selama</em> sebuah kondisi bernilai benar (<code>true</code>). Pengecekan kondisi dilakukan di awal setiap iterasi. Struktur ini cocok digunakan ketika jumlah perulangan tidak pasti dan bergantung pada sebuah kondisi dinamis.
+    </p>
+    <pre><code class="language-python">
+# Inisialisasi variabel di luar loop
+i = 1
+
+# Loop akan terus berjalan selama nilai i kurang dari atau sama dengan 5
+while i <= 5:
+    print(f"Iterasi While ke-{i}")
+    
+    # Jangan lupa untuk mengubah nilai variabel agar tidak terjadi infinite loop
+    i += 1
+    </code></pre>
+</div>

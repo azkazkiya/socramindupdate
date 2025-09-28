@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Kuis: {{ attempt.module_name | capitalize }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .review-question { margin-bottom: 25px; }
+        .user-answer.correct { color: #155724; font-weight: bold; }
+        .user-answer.incorrect { color: #721c24; font-weight: bold; }
+        .correct-answer-info { color: #155724; background-color: #d4edda; padding: 5px; border-radius: 4px; margin-top: 5px;}
+    </style>
+</head>
+<body class="main-page">
+    <div class="main-container">
+        <header class="main-header">
+            <h1>Review Kuis: {{ attempt.module_name | capitalize }}</h1>
+            <nav>
+                <a href="{{ url_for('main.pencapaian') }}">Kembali ke Pencapaian</a>
+                <div>
+                    {% if current_user_name %}
+                        <span class="user-display">
+                            👤 {{ current_user_name | capitalize }}
+                        </span>
+                    {% endif %}
+                    <a href="{{ url_for('auth.logout') }}" class="header-link logout-link">Logout</a>
+                </div>
+            </nav>
+        </header>
+
+        <h3>Skor Akhir: {{ attempt.score }}</h3>
+        <p>Waktu Pengerjaan: {{ attempt.timestamp.strftime('%d %B %Y, %H:%M') }}</p>
+
+        <hr style="margin: 20px 0;">
+
+        {% for answer in attempt.answers %}
+            <div class="review-question">
+                <p><b>{{ loop.index }}. {{ answer.question_text }}</b></p>
+                
+                {% if answer.is_correct %}
+                    <p class="user-answer correct">✓ Jawaban Anda: {{ answer.selected_answer }}</p>
+                {% else %}
+                    <p class="user-answer incorrect">✗ Jawaban Anda: {{ answer.selected_answer }}</p>
+                    <p class="correct-answer-info">Jawaban Benar: {{ answer.correct_answer }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

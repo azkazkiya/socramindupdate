@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pencapaian Saya - SocraMind</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="main-page">
+    <div class="main-container">
+        <header class="main-header">
+            <h1>Pencapaian Belajar Anda</h1>
+            <nav>
+                <a href="{{ url_for('main.materi') }}">Kembali ke Materi</a>
+                <div>
+                    {% if current_user_name %}
+                        <span class="user-display">
+                            👤 {{ current_user_name | capitalize }}
+                        </span>
+                    {% endif %}
+                    <a href="{{ url_for('auth.logout') }}" class="header-link logout-link">Logout</a>
+                </div>
+            </nav>
+        </header>
+        
+        <h2>Riwayat Skor Kuis</h2>
+
+        {% if quiz_history %}
+            <table class="pencapaian-table">
+                <thead>
+                    <tr>
+                        <th>Nama Materi</th>
+                        <th>Skor</th>
+                        <th>Waktu Pengerjaan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for attempt in quiz_history %}
+                        <tr>
+                            {# Buat tautan ke halaman review baru, kirim ID attempt-nya #}
+                            <td>
+                                <a href="{{ url_for('learning.quiz_review', attempt_id=attempt.id) }}">
+                                    {{ attempt.module_name | capitalize }}
+                                </a>
+                            </td>
+                            <td>{{ attempt.score }}</td>
+                            <td>{{ attempt.timestamp.strftime('%d %B %Y, %H:%M') }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Anda belum menyelesaikan kuis apa pun.</p>
+        {% endif %}
+
+    </div>
+</body>
+</html>

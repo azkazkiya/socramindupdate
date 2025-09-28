@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Selamat Datang di SocraMind</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header class="landing-header">
+        {% if current_user_name %}
+            <div class="header-right-group">
+                <span class="user-display">
+                    👤 {{ current_user_name | capitalize }}
+                </span>
+                <a href="{{ url_for('auth.logout') }}" class="button-login">Logout</a>
+            </div>
+        {% else %}
+            <a href="{{ url_for('auth.login') }}" class="button-login">Login</a>
+        {% endif %}
+    </header>
+
+    <div class="landing-container">
+        <div class="landing-content">
+            <div class="text-content">
+                <h1>Selamat Datang di SocraMind</h1>
+                <p>Platform pembelajaran pemrograman interaktif yang dirancang untuk mengasah kemampuan berpikir kritis Anda melalui metode Socratic. Selamat belajar!</p>
+                
+                {% if current_user_name %}
+                    <a href="{{ url_for('main.materi') }}" class="button-start">Lanjutkan Belajar</a>
+                {% else %}
+                    <a href="{{ url_for('auth.login') }}" class="button-start">Mulai Belajar</a>
+                {% endif %}
+            </div>
+            <div class="mascot-container">
+                <img src="{{ url_for('static', filename='images/mascot.png') }}" alt="Maskot SocraMind" class="mascot-image">
+            </div>
+        </div>
+        <div class="wave-decoration"></div>
+    </div> <section class="about-section">
+        <div class="about-content">
+            <h2>Tentang SocraMind</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Metode Socratic</h3>
+                    <p>Alih-alih memberi jawaban, SocraMind akan memandu Anda menemukan solusi melalui pertanyaan-pertanyaan yang merangsang pemikiran.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Kerangka PRIMM</h3>
+                    <p>Setiap modul disusun menggunakan alur Predict, Run, Investigate, Modify, dan Make untuk membangun pemahaman secara bertahap.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Fokus Berpikir Kritis</h3>
+                    <p>Latihan dirancang untuk mengasah kemampuan analisis, evaluasi, dan regulasi diri Anda sebagai seorang programmer pemula.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

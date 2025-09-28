@@ -1,0 +1,92 @@
+<div class="materi-content">
+    <h4>Konsep Struktur Kontrol Percabangan</h4>
+    <p>
+        Apakah kalian senang bermain game? Kapan kalian bisa naik ke level berikutnya? Bagaimana jika kalian terkena serangan musuh sebelum maju ke level berikutnya? Lalu bagaimana jika kalian bisa menyerang semua musuh? Tentu jika berhasil, kalian akan berproses menuju level selanjutnya bukan? 
+    </p>
+    <p>
+        Demikian pula ketika kalian bermain bola voli. Apa yang terjadi jika salah satu tim gagal menyelamatkan bola? Pastinya tim lawan akan mendapatkan poin dan melakukan perayaan, kemudian permainan akan dilanjutkan. Contoh tersebut merupakan kondisi yang berkaitan dengan kejadian bersyarat atau <strong>percabangan</strong>, yang ditandai dengan kata ‘jika’ dan ‘maka’.
+    </p>
+
+    <h5>1. Pemilihan dengan Satu Kondisi</h5>
+    <p>
+        Struktur pemilihan dengan satu kondisi, atau sering disebut sebagai pernyataan <strong>if</strong>, adalah bentuk paling dasar dari pengambilan keputusan dalam pemrograman. Struktur ini digunakan untuk menjalankan satu blok kode hanya jika sebuah kondisi tertentu terpenuhi (bernilai benar atau <code>true</code>). Jika kondisi tersebut tidak terpenuhi (bernilai salah atau <code>false</code>), maka blok kode di dalamnya akan dilewati dan program akan melanjutkan eksekusi ke baris kode berikutnya setelah blok <code>if</code>.
+    </p>
+    <pre><code class="language-python">
+nilai = 85
+
+# Jika nilai lebih besar dari 75, maka cetak pesan "Selamat, Anda lulus!"
+if nilai > 75:
+    print("Selamat, Anda lulus!")
+
+print("Pengecekan nilai selesai.")
+    </code></pre>
+
+    <h5>2. Pemilihan dengan Dua Kondisi</h5>
+    <p>
+        Struktur <strong>if-else</strong> digunakan ketika ada dua kemungkinan aksi yang harus dipilih berdasarkan sebuah kondisi. Jika kondisi pada <code>if</code> terpenuhi (<code>true</code>), maka blok kode pertama akan dieksekusi. Namun, jika kondisi tersebut tidak terpenuhi (<code>false</code>), maka program akan secara otomatis menjalankan blok kode yang ada di dalam <code>else</code>. Dengan kata lain, ini adalah situasi "jika kondisi A benar, lakukan ini; jika tidak, lakukan itu".
+    </p>
+    <pre><code class="language-python">
+umur = 15
+
+# Memeriksa apakah umur cukup untuk mendapatkan SIM
+if umur >= 17:
+    print("Anda sudah cukup umur untuk membuat SIM.")
+else:
+    print("Maaf, Anda belum cukup umur untuk membuat SIM.")
+    </code></pre>
+
+    <h5>3. Pemilihan dengan Lebih dari Dua Kondisi</h5>
+    <p>
+        Ketika terdapat lebih dari dua kemungkinan jalur eksekusi, kita bisa menggunakan struktur <strong>if-elif-else</strong> (di Python) atau struktur <strong>switch-case</strong> (di bahasa lain seperti C/C++ dan Java).
+    </p>
+
+    <h6>a) Struktur if-elif-else</h6>
+    <p>
+        Struktur ini memungkinkan kita untuk mengevaluasi serangkaian kondisi secara berurutan. Program akan memeriksa kondisi pertama (<code>if</code>). Jika benar, blok kodenya dieksekusi dan sisa struktur dilewati. Jika salah, program akan lanjut memeriksa kondisi kedua (<code>elif</code>), dan begitu seterusnya. Jika tidak ada satupun kondisi yang terpenuhi, maka blok <code>else</code> di bagian paling akhir yang akan dieksekusi sebagai pilihan default.
+    </p>
+    <pre><code class="language-python">
+nilai = 78
+
+# Mengkategorikan nilai menjadi A, B, C, D, atau E
+if nilai >= 85:
+    print("Nilai Anda: A")
+elif nilai >= 75:
+    print("Nilai Anda: B")
+elif nilai >= 60:
+    print("Nilai Anda: C")
+elif nilai >= 50:
+    print("Nilai Anda: D")
+else:
+    print("Nilai Anda: E")
+    </code></pre>
+
+    <h6>b) Struktur Switch-Case</h6>
+    <p>
+        Di bahasa pemrograman lain seperti C, struktur <strong>switch-case</strong> adalah alternatif dari <code>if-elif-else</code> yang lebih efisien ketika kondisi yang diperiksa adalah perbandingan kesamaan (<code>==</code>) terhadap sebuah variabel tunggal. Pernyataan <code>break</code> sangat penting untuk menghentikan eksekusi agar tidak "jatuh" ke <code>case</code> berikutnya.
+    </p>
+    <pre><code class="language-c">
+#include <stdio.h>
+
+int main() {
+    char pilihan = 'B';
+
+    // Menentukan aksi berdasarkan pilihan menu
+    switch (pilihan) {
+        case 'A':
+            printf("Anda memilih untuk menambah data.\n");
+            break;
+        case 'B':
+            printf("Anda memilih untuk mengubah data.\n");
+            break;
+        case 'C':
+            printf("Anda memilih untuk menghapus data.\n");
+            break;
+        default:
+            printf("Pilihan tidak valid.\n");
+            break;
+    }
+
+    return 0;
+}
+    </code></pre>
+</div>

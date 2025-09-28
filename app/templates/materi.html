@@ -1,0 +1,50 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pilih Materi - SocraMind</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="main-page">
+    <div class="main-container">
+        <header class="main-header">
+            <h1>Selamat datang, {{ session.username }}!</h1>
+            <nav>
+                <a href="{{ url_for('main.index') }}" class="header-button">🏠 Halaman Utama</a>
+
+                <a href="{{ url_for('main.pencapaian') }}">Pencapaian Saya</a>
+                <div>
+                    {% if current_user_name %}
+                        <span class="user-display">
+                            👤 {{ current_user_name | capitalize }}
+                        </span>
+                    {% endif %}
+                    <a href="{{ url_for('auth.logout') }}" class="header-link logout-link">Logout</a>
+                </div>
+            </nav>
+        </header>
+        
+        <h2>Pilih Materi Pembelajaran</h2>
+        <div class="materi-grid">
+            <a href="{{ url_for('learning.learning_module', module_name='algoritma') }}" class="materi-card">
+                <h3>A. Algoritma Pemrograman</h3>
+                <p>Pelajari konsep dasar dan logika dalam membangun sebuah program.</p>
+                <span>Mulai Belajar →</span>
+            </a>
+            <a href="{{ url_for('learning.learning_module', module_name='percabangan') }}" class="materi-card">
+                <h3>B. Struktur Kontrol Percabangan</h3>
+                <p>Pahami cara program membuat keputusan dengan logika if-else.</p>
+                <span>Mulai Belajar →</span>
+            </a>
+            <a href="{{ url_for('learning.learning_module', module_name='perulangan') }}" class="materi-card">
+                <h3>C. Struktur Kontrol Perulangan</h3>
+                <p>Pelajari cara mengeksekusi kode berulang kali dengan loop for dan while.</p>
+                <span>Mulai Belajar →</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

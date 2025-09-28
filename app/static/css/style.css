@@ -1,0 +1,684 @@
+/* Import font dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Gaya Dasar */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f6;
+    /* background-color: #f9f9f9; */
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1, h2, h3, h4 {
+    color: #2c3e50;
+}
+
+/* Container utama untuk layout */
+.learning-container {
+    max-width: 1200px;
+    margin: auto;
+    background: white;
+    padding: 20px 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* Layout utama (konten dan chat) */
+.main-content-layout {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.left-panel {
+    flex: 1; /* Mengambil ruang yang tersedia */
+}
+
+.right-panel {
+    flex: 1; /* Mengambil ruang yang tersedia */
+}
+
+
+/* Gaya untuk Chatbox */
+#chat-container {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    overflow: hidden; /* Agar sudutnya membulat dengan benar */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#chat-box {
+    height: 400px;
+    padding: 15px;
+    overflow-y: scroll;
+    background-color: #fdfdfd;
+    border-bottom: 1px solid #ddd;
+}
+
+#chat-box p {
+    margin: 0 0 12px 0;
+    line-height: 1.6;
+}
+
+#chat-box strong {
+    color: #e67e22; /* Warna oranye seperti di storyboard */
+}
+
+#chat-form {
+    display: flex;
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+#user-input {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 8px 15px;
+    margin-right: 10px;
+}
+
+#chat-form button {
+    background-color: #f39c12; /* Warna oranye */
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* Gaya untuk Code Editor dan Hasil */
+#code-editor-container {
+    background-color: #2d3436;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#code-editor {
+    width: 100%;
+    background-color: #222;
+    color: #f1f1f1;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    box-sizing: border-box; /* Agar padding tidak menambah lebar */
+}
+
+#run-code-btn {
+    background-color: #27ae60; /* Warna hijau */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+#code-output {
+    background-color: #fff;
+    color: #333;
+    padding: 15px;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    margin-top: 10px;
+    min-height: 40px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Gaya untuk tombol "Lanjut" dan "Mulai Quiz" */
+#next-step-btn {
+    background-color: #e67e22; /* Warna oranye */
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+    display: block; /* Membuat tombol mengambil lebar penuh dari wadahnya */
+    width: 100%;
+    box-sizing: border-box; /* Memastikan padding tidak membuat tombol lebih lebar dari 100% */
+}
+#next-step-btn:hover {
+    background-color: #d35400; /* Warna oranye lebih gelap saat disentuh */
+}
+
+/* --- Gaya untuk Halaman Landing (index.html) --- */
+
+/* Container utama untuk memusatkan konten */
+.landing-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Memenuhi tinggi layar */
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.landing-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ganti dari 'center' ke 'space-between' */
+    flex-wrap: wrap;
+    gap: 40px;
+    width: 100%; /* Pastikan lebarnya penuh */
+    max-width: 1000px; /* Batasi lebar maksimum */
+}
+
+/* Gambar Maskot */
+.mascot-image {
+    width: 300px; /* Atur ukuran maskot */
+    height: auto;
+    margin-bottom: 5px;
+}
+
+.landing-content h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.landing-content p {
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Tombol Mulai Belajar */
+.button-start {
+    display: inline-block;
+    background-color: #e67e22; /* Warna oranye */
+    color: white;
+    padding: 15px 35px;
+    border-radius: 50px; /* Membuatnya menjadi pil */
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.button-start:hover {
+    background-color: #d35400; /* Warna oranye lebih gelap saat disentuh */
+}
+
+/* --- Perbaikan Gaya Halaman Landing --- */
+
+/* Header untuk tombol Login */
+.landing-header {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
+.button-login {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+.button-login:hover {
+    background-color: #e67e22;
+}
+
+/* Layout responsif untuk konten utama */
+
+
+.text-content {
+    flex-basis: 60%; /* Tentukan lebar dasar untuk teks */
+    min-width: 300px;
+    text-align: left;
+}
+
+.mascot-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+.mascot-image {
+    width: 350px; /* Ukuran maskot diperbesar */
+}
+
+/* Hiasan gelombang di bawah */
+.wave-decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px; /* Tinggi gelombang */
+    background: linear-gradient(to right top, #f39c12, #f1c40f);
+    clip-path: polygon(0 80%, 100% 20%, 100% 100%, 0 100%);
+    z-index: -1;
+}
+
+/* Aturan untuk layar kecil (Responsif) */
+@media (max-width: 768px) {
+    .landing-content {
+        flex-direction: column-reverse; /* Pindahkan maskot ke atas */
+        text-align: center;
+    }
+    .text-content {
+        text-align: center;
+    }
+}
+
+/* --- Gaya untuk Halaman Login & Sign Up --- */
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f39c12, #f1c40f);
+}
+
+.auth-container {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.mascot-image-small {
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #e67e22;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.auth-container p {
+    margin-top: 20px;
+}
+.flash-message {
+    color: #e74c3c;
+    margin-bottom: 15px;
+}
+
+/* --- Gaya untuk Halaman Materi & Pencapaian --- */
+.main-page {
+    background-color: #fff;
+}
+.main-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.main-header nav a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #e67e22;
+    font-weight: 500;
+}
+
+.materi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.materi-card {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 25px;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.materi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+.materi-card h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+.materi-card span {
+    color: #e67e22;
+    font-weight: 600;
+}
+.materi-card.disabled {
+    background: #e9ecef;
+    opacity: 0.6;
+    pointer-events: none;
+}
+/* layput step 0 */
+.step-0 .main-content-layout {
+    display: block; /* Ubah dari flex menjadi block */
+}
+.step-0 .right-panel {
+    margin-top: 20px;
+}
+
+/* --- Gaya untuk Halaman Pembelajaran dengan Sidebar --- */
+
+.learning-layout {
+    display: flex;
+    gap: 30px;
+}
+
+.learning-sidebar {
+    flex: 0 0 220px; /* Lebar sidebar 220px, tidak bisa membesar/mengecil */
+    background-color: #fdfdfd;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    height: fit-content;
+}
+
+.learning-sidebar h4 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.learning-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.learning-sidebar li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #555;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.learning-sidebar li a:hover {
+    background-color: #f0f0f0;
+}
+
+.learning-sidebar li a.active {
+    background-color: #e67e22;
+    color: white;
+}
+
+.learning-sidebar li a.locked {
+    color: #aaa;
+    pointer-events: none; /* Tidak bisa diklik */
+    background-color: #f9f9f9;
+}
+
+.learning-main-content {
+    flex: 1; /* Mengambil sisa ruang */
+}
+.learning-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.learning-main-content h1 {
+    margin-top: 0;
+}
+
+/* --- Gaya untuk Header Halaman Belajar --- */
+
+.page-header, .main-header {
+    display: flex; /* Mengaktifkan Flexbox */
+    justify-content: space-between; /* Mendorong item ke ujung kiri dan kanan */
+    align-items: center; /* Membuat semua item sejajar di tengah secara vertikal */
+    padding: 10px 30px; /* Beri sedikit padding agar tidak terlalu mepet */
+    width: 100%;
+    box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+}
+
+.page-header div, .main-header nav {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Memberi jarak otomatis antar item (tombol, nama user, dll) */
+}
+
+.header-link {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    margin-left: 25px;
+    transition: color 0.2s ease;
+}
+
+.header-link:hover {
+    color: #e67e22;
+}
+
+.logout-link {
+    background-color: #f1f1f1;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+/* Styling untuk Flash Messages */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Warna untuk pesan sukses (hijau) */
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* Warna untuk pesan error (merah) */
+.alert-error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+/* Styling untuk Indikator Mengetik */
+.typing-indicator {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.typing-indicator span {
+    height: 8px;
+    width: 8px;
+    background-color: #9E9E9E; /* Warna abu-abu */
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 4px;
+    animation: pulse 1.4s infinite ease-in-out both;
+}
+
+/* Atur delay animasi untuk setiap titik */
+.typing-indicator span:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+/* Definisikan animasi pulse */
+@keyframes pulse {
+    0%, 80%, 100% {
+        transform: scale(0);
+    } 40% {
+        transform: scale(1.0);
+    }
+}
+
+/* Mengubah warna teks 'Code Editor' dan 'Hasil' */
+#code-editor-container h4 {
+    color: #f1f1f1; /* Warna putih keabu-abuan agar mudah dibaca */
+}
+
+/* Styling untuk Tabel Pencapaian */
+.pencapaian-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.pencapaian-table th, .pencapaian-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.pencapaian-table th {
+    background-color: #f2f2f2;
+}
+
+.pencapaian-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.pencapaian-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+/* Styling spesifik untuk area output hasil kode */
+#code-output {
+    display: block; /* Pastikan elemen bersifat block */
+    background-color: #f4f4f4; /* Beri sedikit warna latar */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    min-height: 50px; /* Beri tinggi minimal */
+    white-space: pre-wrap; /* Ini yang terpenting: pertahankan baris baru & spasi */
+    line-height: 1.5; /* Atur jarak antar baris agar tidak tumpang tindih */
+    text-align: left; /* Pastikan teks rata kiri */
+    color: #333; /* Pastikan warna teks terlihat jelas */
+}
+/* Styling untuk Tampilan Nama User */
+.user-display {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 15px;
+    padding: 8px 12px;
+    background-color: #f0f4f8;
+    border-radius: 20px;
+    font-size: 0.9em;
+    color: #4a4a4a;
+    border: 1px solid #e1e8f0;
+}
+
+/* Styling untuk Bagian About (Versi Baru) */
+.about-section {
+    padding: 80px 40px;
+    background-color: #ffffff; /* Latar putih bersih */
+    text-align: center;
+}
+
+.about-content {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.about-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    color: #333;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    text-align: left;
+}
+
+.feature-card {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #e1e8f0;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #ff8c00; /* Warna oranye agar senada */
+    font-size: 1.4em;
+}
+
+.feature-card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Membuat Header di Landing Page menjadi Fixed */
+
+.landing-header {
+    position: fixed; /* 1. Membuat header 'mengambang' dan tetap di posisinya */
+}
+
+/* Styling untuk Konten Materi */
+.materi-content {
+    line-height: 1.6;
+}
+
+/* Styling untuk Video YouTube Responsif */
+.video-responsive {
+    position: relative;
+    padding-bottom: 56.25%; /* Aspect Ratio 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    margin-bottom: 20px;
+}
+
+.video-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

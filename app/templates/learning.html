@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-show-next-button="{{ show_next_button }}">
+<head>
+    <meta charset="UTF-8">
+    <title>Belajar - SocraMind</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+     <header class="page-header">
+        <a href="{{ url_for('main.materi') }}" class="header-link">Kembali ke Menu Materi</a>
+        <div>
+            {% if current_user_name %}
+                <span class="user-display">
+                    👤 {{ current_user_name | capitalize }}
+                </span>
+            {% endif %}
+            <a href="{{ url_for('auth.logout') }}" class="header-link logout-link">Logout</a>
+        </div>
+    </header>
+
+    <div class="learning-container">
+        <div id="step-data-container" data-step='{{ step_data | tojson }}' style="display: none;"></div>
+
+        <div class="learning-layout">
+            <nav class="learning-sidebar">
+                <h4>Navigasi Materi</h4>
+                <ul>
+                    {# Loop melalui setiap step yang ada di kurikulum untuk modul ini #}
+                    {% for step_item in curriculum[module_name] %}
+
+                        {# Tentukan apakah step ini sudah terbuka atau belum #}
+                        {# Logika yang Benar: Bandingkan dengan 'max_step_achieved' dari database #}
+                        {% set is_unlocked = step_item.step <= max_step_achieved %}
+                        
+                        <li>
+                            <a href="{{ url_for('learning.dev_jump', module_name=module_name, step_num=step_item.step) if is_unlocked else '#' }}"
+                            class="{{ 'active' if step_item.step == step_data.step else '' }} {{ 'locked' if not is_unlocked else '' }}">
+                                Step {{ loop.index }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+            <main class="learning-main-content">
+                <h1>Modul Pembelajaran: {{ module_name | capitalize }}</h1>
+                
+                <div id="content-area">
+                    {% if step_data.type == 'static_content' %}
+                        <h2>{{ step_data.title }}</h2>
+                        {% include step_data.content_file %}
+                        <button id="next-step-btn" onclick="handleNextStep()">Lanjut</button>                    {% elif step_data.illustration_image %}
+                        <img src="{{ url_for('static', filename='images/' + step_data.illustration_image) }}" style="max-width: 400px; display: block; margin-bottom: 15px;">
+                    {% elif step_data.type == 'predict_run_investigate' %}
+                        <h3>Tantangan Kode:</h3><pre><code>{{ step_data.code }}</code></pre>
+                    {% endif %}
+                </div>
+
+                {% if step_data.type in ['modify_code', 'make_code'] %}
+                <div id="code-editor-container">
+                    <h4>Code Editor:</h4>
+                    <textarea id="code-editor" rows="15">{{ step_data.base_code }}</textarea>
+                    <button id="run-code-btn">Jalankan Kode</button>
+                    <h4>Hasil:</h4>
+                    <pre><code id="code-output">Hasil akan muncul di sini...</code></pre>
+                </div>
+                {% endif %}
+
+                {% if step_data.type in ['socratic_question', 'multi_stage_socratic', 'predict_run_investigate', 'modify_code', 'make_code'] %}
+                <div id="chat-container">
+                     <div id="chat-box">
+
+                        {% for message in chat_history %}
+                            <p><strong>{{ 'Anda' if message.role == 'user' else 'SocraMind' }}:</strong> {{ message.content | safe }}</p>
+                        {% endfor %}
+                    </div>
+                    <div id="typing-indicator" class="typing-indicator" style="display: none;">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <form id="chat-form">
+                        <input type="text" id="user-input" placeholder="Ketikkan jawabanmu..." autocomplete="off">
+                        <button type="submit">Kirim</button>
+                    </form>
+                </div>
+                {% endif %}
+            </main>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/learning.js') }}"></script>
+</body>
+
+
+</html>
